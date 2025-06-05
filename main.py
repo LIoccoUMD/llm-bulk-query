@@ -30,15 +30,15 @@ def inputQuery(query):
 
 def multiple_queries(model, queries):
     """Input a model and a list of queries"""
-    if (model == "grok"):
-        res = pyautogui.locateOnScreen("chat_boxes/grok.png", confidence=0.5)
-    elif (model == "chatgpt"):
-        res = pyautogui.locateOnScreen(
-            "chat_boxes/chatgpt.png", confidence=0.5)
-    elif (model == "gemini"):
-        res = pyautogui.locateOnScreen("chat_boxes/gemini.png", confidence=0.5)
-    else:
-        pyautogui.screenshot("debug_screen.png")
+    match model:
+        case "grok":
+            res = pyautogui.locateOnScreen("chat_boxes/grok.png", confidence=0.5)
+        case "chatgpt":
+            res = pyautogui.locateOnScreen("chat_boxes/chatgpt.png", confidence=0.5)
+        case "gemini":
+            res = pyautogui.locateOnScreen("chat_boxes/gemini.png", confidence=0.5)
+        case _:
+            pyautogui.screenshot("debug_screen.png")
     center = pyautogui.center(res) if res else None
     adjusted_center = pyautogui.Point(center.x, center.y - 10)
     pyautogui.moveTo(adjusted_center)
